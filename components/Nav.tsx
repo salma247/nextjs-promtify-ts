@@ -14,19 +14,19 @@ type Provider = {
 };
 
 export default function Nav() {
+  const { data: session } = useSession();
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  const isUserLoggedIn = true;
   const [providers, setProviders] = useState<Record<string, Provider> | null>(
     null
   );
-
+  
   useEffect(() => {
     (async () => {
       const res = await getProviders();
       setProviders(res);
     })();
   }, []);
-
+  
   return (
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
@@ -42,17 +42,17 @@ export default function Nav() {
 
       {/* Desktop nav */}
       <div className="sm:flex hidden">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
               Create Prompt
             </Link>
-            <button type="button" className="outline_btn">
+            <button type="button" className="outline_btn" onClick={() => signOut()}>
               Sign out
             </button>
             <Link href="/profile" className="flex gap-2 flex-center">
               <Image
-                src="/assets/images/logo.svg"
+                src={session?.user.image}
                 width={37}
                 height={37}
                 className="rounded-full"
@@ -79,10 +79,10 @@ export default function Nav() {
 
       {/* Mobile nav */}
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
             <Image
-              src="/assets/images/logo.svg"
+              src={session?.user.image}
               width={37}
               height={37}
               className="rounded-full"
