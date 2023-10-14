@@ -7,13 +7,19 @@ import { useRouter, usePathname } from "next/navigation";
 
 type Props = {
   post: any;
-  handleEdit: () => void;
-  handleDelete: () => void;
-  handleTagClick: (tag: string) => void;
+  handleEdit?: (post: any) => void;
+  handleDelete?: (post: any) => void;
+  handleTagClick?: (tag: string) => void;
 };
 
-const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }: Props) => {
+const PromptCard = ({
+  post,
+  handleTagClick,
+  handleEdit,
+  handleDelete,
+}: Props) => {
   const { data: session } = useSession();
+  const pathName = usePathname();
   const router = useRouter();
 
   const [copied, setCopied] = useState("");
@@ -59,21 +65,42 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }: Props) =
 
         <div className="copy_btn" onClick={handleCopy}>
           <Image
-            src={copied === post.prompt ? "/assets/icons/tick.svg" : "/assets/icons/copy.svg"}
+            src={
+              copied === post.prompt
+                ? "/assets/icons/tick.svg"
+                : "/assets/icons/copy.svg"
+            }
             alt="copy_icon"
-            width={20}
-            height={20}
-          />
-        </div>
-      </div>
+                  width={20}
+                  height={20}
+                />
+              </div>
+            </div>
 
-      <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
-      <p
-        className="font-inter text-sm blue_gradient cursor-pointer"
-        onClick={() => handleTagClick && handleTagClick(post.tag)}
+            <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
+            <p
+              className="font-inter text-sm blue_gradient cursor-pointer"
+              onClick={() => handleTagClick?.(post.tag)}
       >
         {post.tag[0] === "#" ? post.tag : `#${post.tag}`}
       </p>
+
+      {session?.user.id === post.creator._id && pathName === "/profile" && (
+        <div className="flex items-center justify-end gap-4 mt-5 border-t border-gray-100 pt-3">
+          <p
+            className="font-inter text-sm green_gradient cursor-pointer"
+            onClick={() => handleEdit?.(post)}
+          >
+            Edit
+          </p>
+          <p
+            className="font-inter text-sm orange_gradient cursor-pointer"
+            onClick={() => handleDelete?.(post)}
+          >
+            Delete
+          </p>
+        </div>
+      )}
     </div>
   );
 };

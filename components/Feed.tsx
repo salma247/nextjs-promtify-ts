@@ -1,21 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import PromptCard from "./PromptCard";
-
-const PromptCardList = ({ data, handleTagClick }: any) => {
-  return (
-    <div className="prompt_layout mt-16">
-      {data.map((post: any) => (
-        <PromptCard
-          key={post._id}
-          post={post}
-          handleTagClick={handleTagClick}
-        />
-      ))}
-    </div>
-  );
-};
+import PromptCardList from "./PromptCardList";
 
 export default function Feed() {
   const [searchText, setSearchText] = useState("");
