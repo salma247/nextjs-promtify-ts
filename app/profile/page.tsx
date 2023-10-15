@@ -20,7 +20,7 @@ export default function MyProfile() {
     if (session?.user.id) {
       fetchPosts();
     }
-  }, []);
+  }, [session?.user.id]);
 
   const handleEdit = (post: any) => {
     router.push(`update-prompt?id=${post._id}`);
@@ -48,7 +48,7 @@ export default function MyProfile() {
   return (
     <Profile
       name={session?.user?.name}
-      desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget ultricies ultrices, nunc nisl aliquam nunc, eget lacinia nisl nisl nec nisl."
+      desc="See all your prompts here, edit or delete them as you wish."
       data={posts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
