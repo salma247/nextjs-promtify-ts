@@ -43,20 +43,20 @@ export default function Feed() {
     );
   };
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      if (searchText) {
-        const filteredPosts = filterPrompts(searchText);
-        setSearchResults(filteredPosts);
-      } else {
-        const res = await fetch(`/api/prompt`);
-        const data = await res.json();
-        setPosts(data);
-      }
-    };
+  const fetchPosts = async () => {
+    if (searchText) {
+      const filteredPosts = filterPrompts(searchText);
+      setSearchResults(filteredPosts);
+    } else {
+      const res = await fetch(`/api/prompt`);
+      const data = await res.json();
+      setPosts(data);
+    }
+  };
 
+  useEffect(() => {
     fetchPosts();
-  }, [searchText]);
+  });
 
   return (
     <section className="feed">
