@@ -8,7 +8,7 @@ type Props = {
   setPost: React.Dispatch<
     React.SetStateAction<{
       prompt: string;
-      tag: string;
+      tag: string[];
     }>
   >;
   submitting: boolean;
@@ -60,7 +60,7 @@ export default function Form({
 
           <input
             value={post.tag}
-            onChange={(e) => setPost({ ...post, tag: e.target.value })}
+            onChange={(e) => setPost({ ...post, tag: [...post.tag, e.target.value] })}
             type="text"
             className="form_input"
             placeholder="#tag"

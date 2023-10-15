@@ -1,6 +1,6 @@
 interface Post {
     prompt: string,
-    tag: string,
+    tag: string[],
 }
 
 interface User {

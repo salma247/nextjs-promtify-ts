@@ -12,7 +12,7 @@ export default function UpdatePrompt() {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [post, setPost] = useState({
     prompt: "",
-    tag: "",
+    tag: [""],
   });
 
   useEffect(() => {

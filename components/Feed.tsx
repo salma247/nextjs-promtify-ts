@@ -38,7 +38,7 @@ export default function Feed() {
     return posts.filter(
       (post) =>
         regex.test(post.prompt) ||
-        regex.test(post.tag) ||
+        post.tag.some((tag) => regex.test(tag)) ||
         regex.test(post.creator.username)
     );
   };
@@ -56,7 +56,7 @@ export default function Feed() {
 
   useEffect(() => {
     fetchPosts();
-  });
+  }, []);
 
   return (
     <section className="feed">

@@ -80,10 +80,8 @@ const PromptCard = ({
 
       <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
 
-      {post.tag
-        .toString()
-        .split(",")
-        .map((tag, index) => (
+      {
+        post.tag.map((tag, index) => (
           <span
             key={index}
             className="font-inter text-sm blue_gradient cursor-pointer"
