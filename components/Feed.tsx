@@ -7,7 +7,7 @@ export default function Feed() {
   const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
   };
 
@@ -17,14 +17,21 @@ export default function Feed() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch(`/api/prompt`);
-      const data = await res.json();
-
-      setPosts(data);
+      if (searchText) {
+        const res = await fetch(`/api/search?query=${searchText}`);
+        const data = await res.json();
+        setPosts(data);
+        console.log("searching");
+        
+      } else {
+        const res = await fetch(`/api/prompt`);
+        const data = await res.json();
+        setPosts(data);
+      }
     };
 
     fetchPosts();
-  }, []);
+  }, [searchText]);
 
   return (
     <section className="feed">
