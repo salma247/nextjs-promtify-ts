@@ -19,10 +19,10 @@ export default function Feed() {
   useEffect(() => {
     const fetchPosts = async () => {
       if (searchText) {
-        const res = await fetch(`/api/search?query=${searchText}`);
+        const res = await fetch(`/api/search/${searchText}`);
         const data = await res.json();
         setPosts(data);
-        console.log("searching");
+        console.log(data);
         
       } else {
         const res = await fetch(`/api/prompt`);
@@ -36,7 +36,7 @@ export default function Feed() {
 
   return (
     <section className="feed">
-      <form className="relative w-full flex-center">
+      <form className="relative w-full flex-center" onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
           value={searchText}
