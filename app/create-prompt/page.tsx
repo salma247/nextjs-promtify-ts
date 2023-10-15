@@ -9,7 +9,7 @@ export default function CreatePrompt() {
   const router = useRouter();
   const [post, setPost] = useState({
     prompt: "",
-    tag: "",
+    tag: [""],
   });
   const [submitting, setSubmitting] = useState(false);
   const { data: session } = useSession();
