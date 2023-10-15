@@ -10,7 +10,7 @@ export const POST = async (req: Request) => {
         const newPrompt = new Prompt({
             creator: userId,
             prompt,
-            tag
+            tag: tag.split(",").map((tag: string) => tag.trim()),
         })
 
         await newPrompt.save();
