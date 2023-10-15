@@ -50,8 +50,8 @@ export default function MyProfile() {
   
   return (
     <Profile
-      name={session?.user?.name}
-      desc="See all your prompts here, edit or delete them as you wish."
+      name='My'
+      desc='Welcome to your personalized profile page. Share your exceptional prompts and inspire others with the power of your imagination'
       data={posts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
