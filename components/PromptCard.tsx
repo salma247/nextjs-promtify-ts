@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
-import { Post, PostWithUser } from "@/types/global";
+import { PostWithUser } from "@/types/global";
 
 type Props = {
   post: PostWithUser;

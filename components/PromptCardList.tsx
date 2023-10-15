@@ -11,7 +11,7 @@ type Props = {
 const PromptCardList = ({ data, handleTagClick, handleEdit, handleDelete }: Props) => {
   return (
     <div className="prompt_layout mt-16">
-      {data.map((post: PostWithUser) => (
+      {data.map((post: any) => (
         <PromptCard
           key={post._id}
           post={post}
