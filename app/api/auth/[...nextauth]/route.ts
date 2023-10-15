@@ -3,7 +3,6 @@ import GoogleProvider from 'next-auth/providers/google';
 
 import User from '@/models/user';
 import { connectToDB } from '@/utils/database';
-import { RouteError } from '@/types/global';
 
 const handler = NextAuth({
   providers: [
