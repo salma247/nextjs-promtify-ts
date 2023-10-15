@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react";
 import PromptCardList from "./PromptCardList";
+import { Post } from "@/types/global";
 
 export default function Feed() {
   const [searchText, setSearchText] = useState("");
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   const handleSearchChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);

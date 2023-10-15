@@ -1,26 +1,17 @@
+import { Post } from "@/types/global";
 import PromptCard from "./PromptCard";
 
 type Props = {
-  data: [
-    {
-      prompt: string;
-      tags: string[];
-      creator: {
-        username: string;
-        email: string;
-        image: string;
-      };
-    }
-  ];
+  data: Post[];
   handleTagClick?: (tag: string) => void;
-  handleEdit?: (post: any) => void;
-  handleDelete?: (post: any) => void;
+  handleEdit?: (post: Post) => void;
+  handleDelete?: (post: Post) => void;
 };
 
 const PromptCardList = ({ data, handleTagClick, handleEdit, handleDelete }: Props) => {
   return (
     <div className="prompt_layout mt-16">
-      {data.map((post: any) => (
+      {data.map((post: Post) => (
         <PromptCard
           key={post._id}
           post={post}

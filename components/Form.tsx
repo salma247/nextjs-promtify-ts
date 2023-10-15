@@ -1,12 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import { Post } from "@/types/global";
 
 type Props = {
   type: string;
-  post: {
-    prompt: string;
-    tag: string;
-  };
+  post: Post;
   setPost: React.Dispatch<
     React.SetStateAction<{
       prompt: string;

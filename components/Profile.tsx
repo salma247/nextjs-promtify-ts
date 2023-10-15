@@ -1,11 +1,12 @@
+import { Post } from "@/types/global";
 import PromptCardList from "./PromptCardList";
 
 type Props = {
   name: string;
   desc: string;
-  data: any;
-  handleEdit?: (post: any) => void;
-  handleDelete?: (post: any) => void;
+  data: Post[];
+  handleEdit?: (post: Post) => void;
+  handleDelete?: (post: Post) => void;
 };
 
 export default function Profile({
