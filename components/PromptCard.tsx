@@ -4,12 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
-import { Post } from "@/types/global";
+import { Post, PostWithUser } from "@/types/global";
 
 type Props = {
-  post: Post;
-  handleEdit?: (post: Post) => void;
-  handleDelete?: (post: Post) => void;
+  post: PostWithUser;
+  handleEdit?: (post: PostWithUser) => void;
+  handleDelete?: (post: PostWithUser) => void;
   handleTagClick?: (tag: string) => void;
 };
 
@@ -72,19 +72,26 @@ const PromptCard = ({
                 : "/assets/icons/copy.svg"
             }
             alt="copy_icon"
-                  width={20}
-                  height={20}
-                />
-              </div>
-            </div>
+            width={20}
+            height={20}
+          />
+        </div>
+      </div>
 
-            <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
-            <p
-              className="font-inter text-sm blue_gradient cursor-pointer"
-              onClick={() => handleTagClick?.(post.tag)}
-      >
-        {post.tag[0] === "#" ? post.tag : `#${post.tag}`}
-      </p>
+      <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
+
+      {post.tag
+        .toString()
+        .split(",")
+        .map((tag, index) => (
+          <span
+            key={index}
+            className="font-inter text-sm blue_gradient cursor-pointer"
+            onClick={() => handleTagClick?.(tag)}
+          >
+            {tag[0] === "#" ? tag : `#${tag}`} {` `}
+          </span>
+        ))}
 
       {session?.user.id === post.creator._id && pathName === "/profile" && (
         <div className="flex items-center justify-end gap-4 mt-5 border-t border-gray-100 pt-3">

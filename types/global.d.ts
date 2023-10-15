@@ -1,8 +1,6 @@
 interface Post {
-    _id: string,
     prompt: string,
     tag: string,
-    creator: User,
 }
 
 interface User {
@@ -13,7 +11,13 @@ interface User {
     image: string,
 }
 
+interface PostWithUser extends Post {
+    creator: User,
+    _id: string,
+}
+
 export type {
     Post,
     User,
+    PostWithUser,
 }

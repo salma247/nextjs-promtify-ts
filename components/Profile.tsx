@@ -1,12 +1,12 @@
-import { Post } from "@/types/global";
+import { Post, PostWithUser } from "@/types/global";
 import PromptCardList from "./PromptCardList";
 
 type Props = {
   name: string;
   desc: string;
   data: Post[];
-  handleEdit?: (post: Post) => void;
-  handleDelete?: (post: Post) => void;
+  handleEdit?: (post: PostWithUser) => void;
+  handleDelete?: (post: PostWithUser) => void;
 };
 
 export default function Profile({
