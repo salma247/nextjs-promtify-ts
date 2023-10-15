@@ -1,4 +1,4 @@
-import { Post, PostWithUser } from "@/types/global";
+import { PostWithUser } from "@/types/global";
 import PromptCard from "./PromptCard";
 
 type Props = {

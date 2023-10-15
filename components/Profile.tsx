@@ -1,10 +1,10 @@
-import { Post, PostWithUser } from "@/types/global";
+import { PostWithUser } from "@/types/global";
 import PromptCardList from "./PromptCardList";
 
 type Props = {
   name: string;
   desc: string;
-  data: Post[];
+  data: PostWithUser[];
   handleEdit?: (post: PostWithUser) => void;
   handleDelete?: (post: PostWithUser) => void;
 };
