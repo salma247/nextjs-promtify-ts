@@ -41,6 +41,10 @@ const handler = NextAuth({
         return false
       }
     },
+
+    async redirect({ baseUrl, url }) {
+      return url.startsWith(baseUrl) ? url : baseUrl
+    }
   }
 })
 
