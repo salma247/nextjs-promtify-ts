@@ -11,6 +11,7 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_SECRET as string,
     })
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({ session }) {
       // store the user id from MongoDB to session
@@ -41,10 +42,6 @@ const handler = NextAuth({
         return false
       }
     },
-
-    async redirect({ baseUrl, url }) {
-      return url.startsWith(baseUrl) ? url : baseUrl
-    }
   }
 })
 
