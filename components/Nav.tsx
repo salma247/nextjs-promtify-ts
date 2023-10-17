@@ -3,13 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { signIn, signOut, useSession, getProviders, LiteralUnion, ClientSafeProvider } from "next-auth/react";
-import { BuiltInProviderType } from "next-auth/providers/index";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
   const { data: session } = useSession();
 
-  const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>(null);
+  const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
@@ -18,10 +17,6 @@ const Nav = () => {
       setProviders(res);
     })();
   }, []);
-
-  const handleSignIn = (provider: LiteralUnion<BuiltInProviderType, string>) => {
-    signIn(provider, {redirect: false});
-  };
 
   return (
     <nav className='flex-between w-full mb-16 pt-3'>
@@ -33,7 +28,7 @@ const Nav = () => {
           height={30}
           className='object-contain'
         />
-        <p className='logo_text'>Promptify</p>
+        <p className='logo_text'>Promptopia</p>
       </Link>
 
       {/* Desktop Navigation */}
@@ -44,7 +39,7 @@ const Nav = () => {
               Create Post
             </Link>
 
-            <button type='button' onClick={() => signOut()} className='black_btn'>
+            <button type='button' onClick={signOut} className='outline_btn'>
               Sign Out
             </button>
 
@@ -66,7 +61,7 @@ const Nav = () => {
                   type='button'
                   key={provider.name}
                   onClick={() => {
-                    handleSignIn(provider.id);
+                    signIn(provider.id);
                   }}
                   className='black_btn'
                 >
